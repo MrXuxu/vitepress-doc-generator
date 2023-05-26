@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+    },
+    "experimentalDecorators": true,
+    "declaration": true
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": ["scripts", "settings", "node_modules", "test"]
+}

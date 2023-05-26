@@ -1,0 +1,88 @@
+{{#orphans ~}}
+<a name="{{{anchorName}}}"></a>
+
+{{>heading-indent~}}
+{{#if virtual}}*{{/if}}{{#with (parentObject)}}{{#if virtual}}*{{/if~}}{{/with~}}
+{{#if name}}{{#sig~}}
+  {{{@depOpen}~}}
+  {{{@codeOpen}~}}
+  {{#if @prefix}}{{@prefix}} {{/if~}}
+  {{@parent~}}
+  {{@accessSymbol}}{{#if (isEvent)}}"{{{name}}}"{{else}}{{{escape name}}}{{/if~}}
+  {{#if @methodSign}}{{#if (isEvent)}} {{@methodSign}}{{else}}{{@methodSign}}{{/if}}{{/if~}}
+  {{{@codeClose}~}}
+  {{{@depClose}~}}
+{{~/sig}}{{/if~}}
+{{#if virtual}}*{{/if}}{{#with (parentObject)}}{{#if virtual}}*{{/if~}}{{/with~}}&nbsp;
+
+
+{{#if description~}}
+**描述**：{{>description~}}
+{{~/if}}
+{{>summary~}}
+{{>augments~}}
+{{>implements~}}
+{{>mixes~}}
+{{>default~}}
+{{>chainable~}}
+{{>overrides~}}
+{{>category~}}
+{{>throws~}}
+{{>fires~}}
+{{>this~}}
+{{>access~}}
+{{>readOnly~}}
+{{>requires~}}
+{{>customTags~}}
+{{>see~}}
+{{>since~}}
+{{>version~}}
+{{>authors~}}
+{{>license~}}
+{{>copyright~}}
+{{>todo~}}
+**参数**：
+{{#if (optionEquals "param-list-format" "list")}}{{>params-list~}}{{/if~}}
+{{#if (optionEquals "param-list-format" "table")~}}
+  {{#if (optionEquals "no-gfm" true)}}
+    {{>params-table-html~}}{{else}}
+    {{#if params}}
+
+{{tableHead params "name|参数名" "type|类型" "defaultvalue|默认值" "description|描述" ~}}
+
+{{#tableRow params "name" "type" "defaultvalue" "description" ~}}
+  | {{#if @col1}}{{>param-table-name}} | {{/if~}}
+  {{#if @col2}}{{>linked-type-list types=type.names delimiter=" \| " }} | {{/if~}}
+  {{#if @col3}}{{>defaultvalue}} | {{/if~}}
+  {{#if @col4}}{{{stripNewlines (inlineLinks description)}}} |{{/if}}
+{{/tableRow}}
+
+    {{/if}}
+  {{/if~}}
+{{/if~}}
+{{>properties~}}
+{{#if returns}}
+{{#if returns.[0].description~}}
+**返回**: {{#each returns~}}
+{{#if type~}}
+
+{{#if type.names}}{{>linked-type-list types=type.names delimiter=" \| " ~}}{{/if~}} <br>
+
+{{#if description}}{{{inlineLinks description}}}{{/if~}}
+{{else~}}
+{{{inlineLinks description}~}}
+{{/if~}}
+{{~/each}}
+  {{/if}}
+{{/if}}
+
+
+{{#examples}}
+**示例**
+{{#if caption}}*({{caption}})* {{else}}{{/if}}
+{{{inlineLinks example}}}
+{{/examples}}
+{{>member-index~}}
+{{>separator~}}
+{{>members~}}
+{{/orphans~}}
